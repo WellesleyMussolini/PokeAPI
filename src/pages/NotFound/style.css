@@ -1,0 +1,35 @@
+.component-div{
+    background-color: darkred;
+    height: 100vh;
+}
+
+/* div */
+.NotFound{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    margin-top: 20px;
+}
+
+.NotFound h1, h2{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;   
+    font-weight: bolder;
+    color: #fff;
+}
+
+h1{
+    font-size: 50px;
+}
+
+h2{
+    margin-top: 15px;
+    font-size: 25px;
+}
+
+/* img */
+.NotFound img{
+    width: 300px; 
+    height: 300px;
+}

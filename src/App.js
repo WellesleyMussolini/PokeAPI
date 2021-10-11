@@ -1,7 +1,8 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
-import * as Routes from './constants/route';
+import * as Routes from './constants/routes';
 import './App.css';
+import Loader from 'react-loader-spinner';
 
 const Home = lazy(() => import("./pages/Home"));
 const Pokemon = lazy(() => import("./pages/Pokemon"));
@@ -12,11 +13,25 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Suspense fallback="loading...">
+        <Suspense fallback={
+          <Loader
+            type="Oval"
+            color="#00BFFF"
+            height={80}
+            width={80}
+            style={{
+              height: '100vh',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}
+          />
+        }>
           <Switch>
-            <Route path={Routes.HOME} component={Home} exact />
-            <Route path={Routes.POKEMON} component={Pokemon} />
-            <Route component={NotFound} />
+              <Route path={Routes.HOME} component={Home} exact />
+              <Route path={Routes.POKEMON} component={Pokemon} />
+              <Route component={NotFound} />
           </Switch>
         </Suspense>
       </Router>
