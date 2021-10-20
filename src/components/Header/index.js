@@ -4,10 +4,8 @@ import './style.css';
 
 function Header() {
     return (
-        <div>
-            <div className="header" >
-                <img src={Logo} alt="Pokemon" />
-            </div>
+        <div className="header" >
+            <img src={Logo} alt="Pokemon" />
         </div>
     )
 }

@@ -1,0 +1,8 @@
+.title{
+    background-color: goldenrod;
+    width: 100%;
+    color: #fff;
+    text-align: center;
+    font-size: 2em;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}

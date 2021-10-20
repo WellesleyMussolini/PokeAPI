@@ -1,45 +1,29 @@
 import React from 'react';
 import Header from '../../components/Header';
 import './style.css';
-import Greet from '../../components/Greet';
+import Props from '../../components/Props/index';
+import { pokemons } from '../../data/data';
 
-function Home(props) {
-    const objeto = [
-        {
-            name: "Wellesley",
-            sexo: "M",
-            diet: "Vegano"
-        },
-
-        {
-            name: "Lucas",
-            sexo: "M",
-            diet: "Vegano"
-        },
-
-        {
-            name: "Jade",
-            sexo: "F",
-            diet: "Vegano"
-        },
-    ]
-
+function Home() {
     return (
         <div>
-            <Header />
-
-            <div className="main">
-
-                {
-                    objeto.map(e => {
-                        return (
-                            <Greet name={e.name} diet={e.sexo} />
-                        )
-                    })
-                }
+            <div>
+                <Header />
             </div>
 
-
+            <div className="card">
+                <ul>
+                    {
+                        pokemons.map(e => {
+                            return (
+                                <li key={e.id}>
+                                    <Props name={e.name} picture={e.picture} power={e.power} />
+                                </li>
+                            )
+                        })
+                    }
+                </ul>
+            </div>
         </div>
     )
 }
