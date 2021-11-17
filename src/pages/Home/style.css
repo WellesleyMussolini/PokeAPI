@@ -1,9 +1,15 @@
-.card ul{
+.card{
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 70%;
-  z-index: 0;
+}
+
+.card ul{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; 
+  
+  height: 70%; 
+  z-index: 0;  
 }
 
 .card img{
@@ -13,10 +19,11 @@
 }
 
 .card li{
-  list-style: none;
+  list-style: none;  
   margin-right: 10px;
+  margin-bottom: 20px;
   width: 300px;
-  height: 300px;
+  height: 320px; 
   box-shadow: 10px 4px 8px 0 rgba(0,0,0,0.2);
 }
 
@@ -24,7 +31,37 @@
   .card ul{
     display: flex;
     flex-direction: column;
-
   }
 } 
 
+@media screen and (max-width: 405px) {
+  .card li{
+    display: flex;
+    width: 80%;
+  }
+}
+
+.search{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10vh;
+}
+
+.search input{
+  text-align: center;
+  width: 400px;
+  height: 23px;
+}
+
+.buttons{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 5vh;
+}
+
+.buttons button{
+  margin-right: 10px;
+}
