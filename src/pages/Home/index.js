@@ -10,44 +10,46 @@ function Home() {
     const [weakest, setWeakest] = useState(false);
 
     useEffect(() => {
-        if(weakest === true){
-            setPowerful(false)
+        if (powerful) {
+            return setWeakest(false);
         }
-        if(powerful === true){
-            setWeakest(false)
+        else if (weakest) {
+            return setPowerful(false);
         }
-    }, [powerful, weakest])
+        return;
+    }, [powerful, weakest]);
 
     const pokemonFilter = pokemons.filter(e => {
         return (e.name.toLowerCase().includes(searchValue.toLowerCase()));
     });
 
-    const filteredPokemons = searchValue ? pokemonFilter : pokemons;
-
-    const highestPokemon = pokemons.reduce((previousValue, currentValue) => {
+    const greatestPokemon = pokemons.reduce((previousValue, currentValue) => {
         return (
             previousValue = previousValue.points > currentValue.points ? previousValue : currentValue
         );
     });
 
-    const lowestPokemon = pokemons.reduce((previousValue, currentValue) => {
+    const weakestPokemon = pokemons.reduce((previousValue, currentValue) => {
         return (
             previousValue = previousValue.points < currentValue.points ? previousValue : currentValue
         );
     });
 
-    const strongestPokemon = pokemons.filter(e => {
-        return (e === highestPokemon);
-    });
+    let result = pokemons;
 
-    const weakPokemon = pokemons.filter(e => {
-        return (e === lowestPokemon);
-    });
-
-    const greatestPokemon = powerful ? strongestPokemon : pokemons;
-    const weakestPokemon = weakest ? weakPokemon : pokemons;
-
-    const pokemonStrength = powerful ? greatestPokemon : weakestPokemon;
+    if (powerful) {
+        result = pokemons.filter(e => {
+            return (e === greatestPokemon);
+        });
+    }
+    else if (weakest) {
+        result = pokemons.filter(e => {
+            return (e === weakestPokemon);
+        });
+    }
+    else if (searchValue) {
+        result = pokemonFilter;
+    }
 
     return (
         <div>
@@ -60,30 +62,20 @@ function Home() {
             </div>
 
             <div className="buttons">
-                <button onClick={() => setPowerful(!powerful)}>Mais Forte</button>
-                <button onClick={() => setWeakest(!weakest)}>Mais Fraco</button>
+                <button id="forte" onClick={() => setPowerful(!powerful)}>FORTE</button>
+                <button id="fraco" onClick={() => setWeakest(!weakest)}>FRACO</button>
             </div>
 
             <div className="card">
                 <ul>
                     {
-                        !searchValue
-                            ?
-                            pokemonStrength.map(e => {
-                                return (
-                                    <li key={e.id}>
-                                        <Cards name={e.name} picture={e.picture} points={e.points} power={e.power} type={e.type} />
-                                    </li>
-                                )
-                            })
-                            :
-                            filteredPokemons.map(e => {
-                                return (
-                                    <li key={e.id}>
-                                        <Cards name={e.name} picture={e.picture} points={e.points} power={e.power} type={e.type} />
-                                    </li>
-                                )
-                            })
+                        result.map(e => {
+                            return (
+                                <li key={e.id}>
+                                    <Cards name={e.name} picture={e.picture} points={e.points} power={e.power} type={e.type} />
+                                </li>
+                            )
+                        })
                     }
                 </ul>
             </div>
